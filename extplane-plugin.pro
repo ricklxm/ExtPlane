@@ -30,9 +30,10 @@ TARGET = extplane-plugin
 #QMAKE_CXXFLAGS += -fPIC
 #QMAKE_LFLAGS += -shared -fPIC
 #  -static-libgcc  <- fails on mac
-
+OUT_FOLDER = release
 CONFIG(debug, debug|release) {
     # Debug
+    OUT_FOLDER = debug
     message("Ext-Plane Debug Build")
 } else {
     # Release
@@ -72,9 +73,10 @@ win32 {
     DEFINES += NOMINMAX #Qt5 bug
 }
 
-QMAKE_POST_LINK += $(COPY_FILE) $(TARGET) extplane.xpl
+QMAKE_POST_LINK += $(COPY_FILE) "$$shell_path($${OUT_PWD})\\$${OUT_FOLDER}\\$(TARGET)" "$$shell_path($${OUT_PWD})\\$${OUT_FOLDER}\\extplane.xpl"
 QMAKE_CLEAN += extplane.xpl
-
+message($$QMAKE_POST_LINK)
+message($$OUT_FOLDER)
 SOURCES += main.cpp \
     xplaneplugin.cpp \
     tcpserver.cpp \

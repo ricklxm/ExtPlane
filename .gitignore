@@ -5,3 +5,4 @@ Makefile
 *.user
 *.xpl
 *.so*
+client/build-extplane-client-qt-Desktop_Qt_5_6_0_MSVC2013_32bit-Release/
