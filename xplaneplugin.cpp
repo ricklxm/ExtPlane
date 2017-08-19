@@ -55,7 +55,7 @@ int XPlanePlugin::pluginStart(char * outName, char * outSig, char *outDesc) {
                                                  NULL, NULL,                                    // Doubles accessors
                                                  NULL, NULL,                                    // Int array accessors
                                                  NULL, NULL,                                    // Float array accessors
-                                                 NavCustomData::DataCallback_5km, NULL,         // Raw data accessors
+                                                 (XPLMGetDatab_f)NavCustomData::DataCallback_5km, NULL,         // Raw data accessors
                                                  NULL, NULL);                                   // Refcons not used
     XPLMRegisterDataAccessor("extplane/navdata/20km",
                                                  xplmType_Data,                                 // The types we support
@@ -65,7 +65,7 @@ int XPlanePlugin::pluginStart(char * outName, char * outSig, char *outDesc) {
                                                  NULL, NULL,                                    // Doubles accessors
                                                  NULL, NULL,                                    // Int array accessors
                                                  NULL, NULL,                                    // Float array accessors
-                                                 NavCustomData::DataCallback_20km, NULL,        // Raw data accessors
+                                                 (XPLMGetDatab_f)NavCustomData::DataCallback_20km, NULL,        // Raw data accessors
                                                  NULL, NULL);                                   // Refcons not used
     XPLMRegisterDataAccessor("extplane/navdata/100km",
                                                  xplmType_Data,                                 // The types we support
@@ -75,7 +75,7 @@ int XPlanePlugin::pluginStart(char * outName, char * outSig, char *outDesc) {
                                                  NULL, NULL,                                    // Doubles accessors
                                                  NULL, NULL,                                    // Int array accessors
                                                  NULL, NULL,                                    // Float array accessors
-                                                 NavCustomData::DataCallback_100km, NULL,       // Raw data accessors
+                                                 (XPLMGetDatab_f)NavCustomData::DataCallback_100km, NULL,       // Raw data accessors
                                                  NULL, NULL);                                   // Refcons not used
     XPLMRegisterDataAccessor("extplane/atc/124thatc/latest",
                                                  xplmType_Data,                                 // The types we support
@@ -85,7 +85,7 @@ int XPlanePlugin::pluginStart(char * outName, char * outSig, char *outDesc) {
                                                  NULL, NULL,                                    // Doubles accessors
                                                  NULL, NULL,                                    // Int array accessors
                                                  NULL, NULL,                                    // Float array accessors
-                                                 ATCCustomData::DataCallback, NULL,             // Raw data accessors
+                                                 (XPLMGetDatab_f)ATCCustomData::DataCallback, NULL,             // Raw data accessors
                                                  NULL, NULL);
 
     app->processEvents();

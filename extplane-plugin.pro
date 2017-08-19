@@ -6,6 +6,7 @@ QMAKE_CXXFLAGS += -DXPLM210=1
 QMAKE_CXXFLAGS += -DXPLM200=1
 
 # If your X-Plane SDK is in another directory, add or change it here:
+INCLUDEPATH += XPSDK201/SDK/CHeaders/XPLM
 INCLUDEPATH += $$(HOME)/SDK/CHeaders/XPLM
 INCLUDEPATH += ../XPlaneSDK/CHeaders/XPLM
 INCLUDEPATH += SDK/CHeaders/XPLM
@@ -26,8 +27,8 @@ TEMPLATE = lib
 
 TARGET = extplane-plugin
 
-QMAKE_CXXFLAGS += -fPIC
-QMAKE_LFLAGS += -shared -fPIC
+#QMAKE_CXXFLAGS += -fPIC
+#QMAKE_LFLAGS += -shared -fPIC
 #  -static-libgcc  <- fails on mac
 
 CONFIG(debug, debug|release) {
@@ -67,7 +68,7 @@ win32 {
         LIBS += -lXPLM_64 -lXPWidgets_64
     }
     DEFINES += APL=0 IBM=1 LIN=0
-    LIBS += -L../XPlaneSDK/Libraries/Win
+    LIBS += -L$${PWD}/XPSDK201/SDK/Libraries/Win
     DEFINES += NOMINMAX #Qt5 bug
 }
 

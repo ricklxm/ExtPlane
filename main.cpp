@@ -21,7 +21,7 @@ PLUGIN_API  float	MyFlightLoopCallback(
 
 PLUGIN_API  int XPluginStart(
         char * outName, char * outSig, char *outDesc) {
-    XPLMRegisterFlightLoopCallback(MyFlightLoopCallback, 0.01, NULL);
+    XPLMRegisterFlightLoopCallback(MyFlightLoopCallback, 0.01f, NULL);
     Q_ASSERT(!globalPlugin);
     globalPlugin = new XPlanePlugin();
     if(globalPlugin) {
