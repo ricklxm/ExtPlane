@@ -46,10 +46,50 @@ void ClientDataRef::setSubscribers(int sub) {
     _subscribers = sub;
 }
 
+double ClientDataRef::doubleValue(int index, bool* ok, double defaultValue)
+{
+    if (_values.size() <= index) {
+        ok = false;
+        return defaultValue;
+    }
+    bool success;
+    double v = _values[index].toDouble(&success);
+    if (!success) v = defaultValue;
+    if (ok != 0) {
+        *ok = success;
+    }
+    return v;
+}
+
 void ClientDataRef::setValue(double _newValue, int index) {
-    if(_values.size() < index + 1)
-        _values.reserve(index+1);
+    if(_values.size() < index + 1) {
+        int currentSize = _values.size();
+        int expectedSize = index + 1;
+        _values.reserve(expectedSize);
+        QString str;
+        while (currentSize++ < expectedSize) {
+            _values.append(str);
+        }
+    }
+
     _values[index] = QString::number(_newValue);
+    emit valueSet(this);
+}
+
+// add by rick
+void ClientDataRef::setValue(QList<double> _newValues) {
+    if(_values.size() < _newValues.count() + 1)
+        _values.reserve(_newValues.count() + 1);
+    _values.clear();
+    for (double v : _newValues) {
+        _values.append(QString::number(v));
+    }
+    emit valueSet(this);
+}
+
+// add by rick
+void ClientDataRef::setValue(QStringList _newValues) {
+    _values = _newValues;
     emit valueSet(this);
 }
 

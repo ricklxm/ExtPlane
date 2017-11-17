@@ -2,6 +2,7 @@ QT       += network
 QT       -= gui
 
 TEMPLATE = lib
+CONFIG += staticlib
 
 HEADERS += \
     simulatedextplaneconnection.h \
